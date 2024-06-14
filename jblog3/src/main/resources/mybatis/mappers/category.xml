@@ -24,6 +24,20 @@
 		]]>
 	</select>
 
+	<select id="findByNoAndId" parameterType="map" resultType="categoryvo">
+		<![CDATA[
+			select no, name, description, reg_date as regDate
+			from category where no=#{no } and id=#{id }
+		]]>
+	</select>
+
+	<select id="findByPostNoAndId" parameterType="map" resultType="categoryvo">
+		<![CDATA[
+			select no, name, description, reg_date as regDate
+			from category where no=(select category_no from post where no=#{postNo }) and id=#{id }
+		]]>
+	</select>
+
 	<delete id="deleteByNoAndId" parameterType="map">
 		<![CDATA[
 			delete from category 

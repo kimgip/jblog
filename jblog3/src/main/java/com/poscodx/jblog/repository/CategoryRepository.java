@@ -24,6 +24,14 @@ public class CategoryRepository {
 		return sqlSession.selectList("category.findCategoryList", id);
 	}
 	
+	public CategoryVo findByNoAndId(Long no, String id) {
+		return sqlSession.selectOne("category.findByNoAndId", Map.of("no", no, "id", id));
+	}
+	
+	public CategoryVo findByPostNoAndId(Long no, String id) {
+		return sqlSession.selectOne("category.findByPostNoAndId", Map.of("no", no, "id", id));
+	}
+	
 	public int deleteByNoAndId(Long no, String id) {
 		return sqlSession.delete("category.deleteByNoAndId", Map.of("no", no, "id", id));
 	}

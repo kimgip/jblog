@@ -31,7 +31,9 @@ public class CategoryService {
 	
 	@Transactional
 	public void delete(Long no, String id) {
-		// post 삭제 전에 no, id 확인이 필요해보임..
+		if(categoryRepository.findByNoAndId(no, id) == null) {
+			return;
+		}
 		postRepository.deleteByCategoryNo(no);
 		categoryRepository.deleteByNoAndId(no, id);
 	}

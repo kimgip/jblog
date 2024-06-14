@@ -122,7 +122,7 @@ public class BlogController {
 	@Auth
 	@RequestMapping({"/admin/delete"})
 	public String adminDelete(@PathVariable("id") String id, Long no) {
-		postService.delete(no);
+		postService.delete(no, id);
 		return "redirect:/"+id;
 	}
 
