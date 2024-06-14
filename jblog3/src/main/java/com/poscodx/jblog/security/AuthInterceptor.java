@@ -14,7 +14,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("AuthIntercpetor");
 		// 1. handler 종류 확인
 		if(!(handler instanceof HandlerMethod)) {
 			// DefaultServletHandler가 처리하는 경우(정적자원, /assets/**, mapping이 안되어 있는 url)
@@ -38,6 +37,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 		
 		if(authUser == null) {
 			response.sendRedirect(request.getContextPath()+"/user/login");
+			return false;
+		}
+		
+		String blogId = request.getServletPath().split("/")[1];
+		if(!authUser.getId().equals(blogId)) {
+			response.sendRedirect(request.getContextPath()+blogId);
 			return false;
 		}
 		
