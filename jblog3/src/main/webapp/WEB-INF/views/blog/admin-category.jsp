@@ -33,15 +33,7 @@
 						<tr>
 							<td>${categoryListSize - status.index }</td>
 							<td>${vo.name }</td>
-							<c:choose>
-								<c:when test="${empty vo.countPost }">
-									<td>0</td>
-								</c:when>
-								<c:otherwise>
-									<td>${vo.countPost }</td>
-								</c:otherwise>
-							</c:choose>
-							
+							<td>${vo.countPost }</td>
 							<td>${vo.description }</td>
 							<td><a href="${pageContext.request.contextPath}/${authUser.id}/admin/category/delete?no=${vo.no}" class="del"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a></td>
 						</tr>

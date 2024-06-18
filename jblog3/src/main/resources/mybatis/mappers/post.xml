@@ -19,18 +19,18 @@
 		]]>
 	</select>
 
-	<select id="findPostByNo" parameterType="long" resultType="postvo">
+	<select id="findPostByNoAndCategoryNo" parameterType="map" resultType="postvo">
 		<![CDATA[
 			select no, title, contents, 
 				date_format(reg_date, '%Y-%m-%d %H:%i:%s') as regDate, 
 				category_no as categoryNo from post
-				where no = #{no }
+				where no = #{no } and category_no = #{categoryNo }
 		]]>
 	</select>
 
 	<select id="findTotalCountByCategoryNo" parameterType="long" resultType="integer">
 		<![CDATA[
-			select count(*) from post 
+			select ifnull(count(*), 0) from post 
 				where category_no=#{categoryNo }
 		]]>
 	</select>

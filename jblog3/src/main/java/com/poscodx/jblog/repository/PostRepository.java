@@ -1,6 +1,7 @@
 package com.poscodx.jblog.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -23,8 +24,10 @@ public class PostRepository {
 		return sqlSession.selectList("post.findPostList", no);
 	}
 
-	public PostVo findPostByNo(Long no) {
-		return sqlSession.selectOne("post.findPostByNo", no);
+	public PostVo findPostByNoAndCategoryNo(Long no, Long categoryNo) {
+		return sqlSession.selectOne("post.findPostByNoAndCategoryNo", 
+				Map.of(	"no", no,
+						"categoryNo", categoryNo));
 	}
 
 	public int deleteByCategoryNo(Long no) {

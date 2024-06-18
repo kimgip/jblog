@@ -47,7 +47,7 @@ public class BlogController {
 		if (categoryNo.isEmpty()) {
 			categoryNo = Optional.of(categoryList.get(0).getNo());
 		}
-		List<PostVo> postList = postService.getPostList(categoryNo.get());
+		List<PostVo> postList = postService.getPostList(categoryNo.get(), id);
 		if(postNo.isEmpty()) {
 			postNo = Optional.of(postList.size() > 0 ? postList.get(0).getNo() : 1L);
 		}
@@ -55,7 +55,7 @@ public class BlogController {
 		model.addAttribute("blogVo", blogService.getById(id));
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("postList", postList);
-		model.addAttribute("postVo", postService.getPostByNo(postNo.get()));
+		model.addAttribute("postVo", postService.getPostByNo(postNo.get(), categoryNo.get(), id));
 		return "blog/main";
 	}
 	

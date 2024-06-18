@@ -17,7 +17,7 @@
 
 	<select id="findCategoryList" parameterType="string" resultType="categoryvo">
 		<![CDATA[
-			select no, name, description, reg_date as regDate, count_post as countPost 
+			select no, name, description, reg_date as regDate, ifnull(count_post, 0) as countPost 
 			from category a left join (select category_no, count(*) as count_post from post where category_no group by category_no) as b on a.no=b.category_no
 				where id = #{id }
 			    order by name;
