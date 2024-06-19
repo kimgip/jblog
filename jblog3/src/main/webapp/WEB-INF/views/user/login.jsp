@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!doctype html>
 <html>
@@ -14,9 +15,10 @@
 	<div class="center-content">
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<form class="login-form" method="post" action="${pageContext.request.contextPath }/user/auth">
-      		<label>아이디</label> <input type="text" name="id">
-      		<label>패스워드</label> <input type="text" name="password">
-      		<input type="submit" value="로그인">
+      		<label><spring:message code="user.label.id"/></label> <input type="text" name="id">
+      		<label><spring:message code="user.label.password"/></label> <input type="text" name="password">
+      		<spring:message code="user.login.button.text" var="login_button"/>
+      		<input type="submit" value="${login_button }">
 		</form>
 	</div>
 </body>
