@@ -15,6 +15,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -48,26 +49,10 @@ public class MvcConfig implements WebMvcConfigurer{
 		return messageConverter;
 	}
 	
-//	@Bean
-//	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-//		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
-//		messageConverter.setSupportedMediaTypes(
-//				Arrays.asList(
-//					new MediaType("application", "json", Charset.forName("utf-8"))
-//			)
-//		);
-//		return messageConverter;
-//	}
-//
-//	@Override
-//	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//		converters.add(stringHttpMessageConverter());
-//		converters.add(mappingJackson2HttpMessageConverter());
-//		
-//	}
-
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry
+			.addResourceHandler("/assets/**")
+			.addResourceLocations("classpath:assets/");
 	}
 }
