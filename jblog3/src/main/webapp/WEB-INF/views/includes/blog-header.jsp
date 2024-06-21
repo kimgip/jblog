@@ -13,7 +13,9 @@
 		</c:when>
 		<c:otherwise>
 			<li><a href="${pageContext.request.contextPath}/user/logout"><spring:message code="header.gnb.logout"/></a></li>
-			<li><a href="${pageContext.request.contextPath}/${authUser.id}/admin"><spring:message code="header.gnb.blog.settings"/> </a></li>		
+			<c:if test="${authUser.id == id }">
+				<li><a href="${pageContext.request.contextPath}/${authUser.id}/admin"><spring:message code="header.gnb.blog.settings"/> </a></li>		
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 	</ul>

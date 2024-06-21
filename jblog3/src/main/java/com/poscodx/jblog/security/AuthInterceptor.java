@@ -42,7 +42,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		
 		String blogId = request.getServletPath().split("/")[1];
 		if(!authUser.getId().equals(blogId)) {
-			response.sendRedirect(request.getContextPath()+blogId);
+			response.sendRedirect(request.getContextPath()+"/"+blogId);
 			return false;
 		}
 		
